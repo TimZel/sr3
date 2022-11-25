@@ -11,19 +11,19 @@ public class Request {
     String getContentType(String exe) throws FileNotFoundException {
         Pattern patternExeContentType = Pattern.compile(exe + "(.+)");
         String fileName = "/home/zelyanin/IdeaProjects/servReq2.0/src/main/java/testerFiletable";
-        String exeParse = null;
+        String contentType = null;
         try (var buff = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)))) {
             while (buff.ready()) {
                 String str = buff.readLine();
                 Matcher matcherExeContentType = patternExeContentType.matcher(str);
                 if (matcherExeContentType.find()) {
-                    exeParse = matcherExeContentType.group(1);
+                    contentType = matcherExeContentType.group(1);
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return exeParse;
+        return contentType;
     }
     String exe;
     public static final Pattern patternHeaderValue = Pattern.compile("(\\p{Lu}{1,2}.*(\\:))(\\s.*)");
